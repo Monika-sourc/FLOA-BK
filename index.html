@@ -1,72 +1,95 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FLOA BK</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--p:#6A0DAD;--bg:#f9fafb;--w:#fff;--b:#e5e7eb;--m:#6b7280}
-*{box-sizing:border-box;font-family:system-ui,Arial,sans-serif}
-body{margin:0;background:var(--bg)}
+:root{--p:#6A0DAD;--l:#F3E8FF;--bg:#F9FAFB;--w:#fff;--t:#111827;--m:#6b7280;--b:#e5e7eb;--g:#166534}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:0}
+body{background:var(--bg);font-size:14px}
 .screen{display:none;min-height:100vh}.screen.active{display:block}
-.btn{width:100%;padding:14px;background:var(--p);color:#fff;border:0;border-radius:9px;font-size:16px;font-weight:600;cursor:pointer}
-.input{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;font-size:15px}
-.card{background:#fff;border:1px solid var(--b);border-radius:12px;padding:20px;margin:16px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
-header{background:#fff;padding:14px 18px;border-bottom:1px solid var(--b);font-weight:800;font-size:20px;color:var(--p);letter-spacing:1px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:50}
+.hidden{display:none!important}
+.circle{width:70px;height:70px;border-radius:50%;background:var(--p);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.btn{width:100%;padding:14px;background:var(--p);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:500;cursor:pointer}
+.input{width:100%;padding:12px 14px;border:1px solid #D1D5DB;border-radius:8px;font-size:14px}
+header{background:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--b)}
+.logo{display:flex;gap:8px;align-items:center;font-size:19px;font-weight:700;color:var(--p);letter-spacing:0.5px}
+.badge{width:36px;height:36px;border-radius:50%;background:var(--l);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--p);cursor:pointer;font-size:14px}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--p);display:grid;grid-template-columns:repeat(4,1fr);padding:10px 0 6px}
+.nav{color:#fff;font-size:11px;opacity:.7;text-align:center;cursor:pointer}.nav.active{opacity:1}.nav i{font-size:18px;margin-bottom:2px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.05);border:1px solid var(--b)}
 </style>
 </head>
 <body>
-
-<!-- LOGIN -->
 <section id="login" class="screen active">
-<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px">
-<div style="background:#fff;padding:30px;border-radius:14px;width:100%;max-width:360px;box-shadow:0 4px 14px rgba(0,0,0,.08)">
-<div style="width:80px;height:80px;background:var(--p);border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:800">FB</div>
-<h1 style="text-align:center;font-size:32px;color:var(--p);margin:0 0 4px;letter-spacing:1.5px">FLOA BK</h1>
-<p style="text-align:center;color:var(--m);margin:0 0 22px;font-size:13px">Strefa klienta</p>
-<input id="email" class="input" type="email" placeholder="Email" style="margin-bottom:10px">
-<input id="pin" class="input" type="password" placeholder="PIN (6 chiffres)" maxlength="6" style="margin-bottom:14px;border:2px solid var(--p)">
-<button class="btn" id="loginBtn">Zaloguj się</button>
-<p id="status" style="text-align:center;font-size:12px;color:var(--m);margin-top:10px">Connexion Firebase...</p>
-<p id="err" style="display:none;color:#dc2626;text-align:center;margin-top:8px;font-size:13px"></p>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;background:#f3f4f6">
+<div style="background:#fff;border-radius:12px;padding:28px;width:100%;max-width:360px;box-shadow:0 4px 12px rgba(0,0,0,.1)">
+<div class="circle"><span style="color:#fff;font-size:28px;font-weight:bold">FB</span></div>
+<h1 style="text-align:center;font-size:22px;font-weight:800;margin-bottom:20px;color:var(--p);letter-spacing:1px">FLOA BK</h1>
+<div id="loginInfo" style="background:#f3f4f6;padding:12px;border-radius:8px;text-align:center;margin-bottom:18px;font-size:13px">Zaloguj się kontem autorisé par l'admin</div>
+<label style="font-size:12px;color:var(--m);margin-bottom:4px;display:block">Twój adres e-mail</label>
+<input id="email" type="email" class="input" style="margin-bottom:14px" placeholder="nom@gmail.com">
+<label style="font-size:12px;color:var(--m);margin-bottom:4px;display:block">Twój kod PIN</label>
+<input id="pin" type="password" maxlength="6" class="input" style="border:2px solid var(--p);margin-bottom:18px" placeholder="••••••">
+<button onclick="login()" class="btn">Zaloguj się <i class="fa-solid fa-arrow-right"></i></button>
+<p id="err" class="hidden" style="color:#dc2626;margin-top:10px;font-size:13px;text-align:center"></p>
 </div></div>
 </section>
 
-<!-- DASHBOARD -->
-<section id="dash" class="screen">
-<header>FLOA BK</header>
+<section id="dashboard" class="screen">
+<header><div class="logo"><i class="fa-solid fa-building-columns"></i> FLOA BK</div><div style="display:flex;gap:10px"><div class="badge"><i class="fa-regular fa-bell"></i></div><div class="badge" onclick="openAcc()" id="avatar">FB</div></div></header>
+<main style="padding:20px 18px 90px">
+<h2 style="font-weight:500;margin-bottom:16px;font-size:15px" id="greet">Powitanie</h2>
 <div class="card">
-<div style="color:var(--m);font-size:13px">Witaj, <b id="name"></b></div>
-<div style="font-size:32px;font-weight:700;margin:8px 0" id="bal">0 zł</div>
-<button class="btn" onclick="go('transfer')">Wykonaj przelew</button>
+<p style="color:var(--m);margin-bottom:6px;font-size:13px">Dostępne saldo <i class="fa-solid fa-circle-check" style="color:var(--p)"></i></p>
+<p id="bal" style="font-size:28px;font-weight:700;margin-bottom:10px">0,00 zł</p>
+<p style="color:var(--m);margin-bottom:18px;font-size:12px">Uwzględnij wszystkie swoje potrzeby</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button onclick="toast('IBAN:...')" style="padding:10px;border:1px solid var(--b);border-radius:8px;background:#fff;font-size:13px"><i class="fa-regular fa-credit-card"></i> IBAN</button>
+<button onclick="show('transfer')" style="padding:10px;border:1px solid var(--b);border-radius:8px;background:#fff;font-size:13px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Przelew</button>
+<button onclick="openCard()" style="grid-column:1/-1;padding:10px;border:1px solid var(--b);border-radius:8px;background:#fff;font-size:13px"><i class="fa-regular fa-id-card"></i> Karta wirtualna</button>
+</div></div>
+<h3 style="font-weight:600;margin-bottom:12px;font-size:14px"><i class="fa-solid fa-bars"></i> Historia</h3>
+<div class="card" style="padding:14px;display:flex;justify-content:space-between;align-items:center">
+<div style="display:flex;gap:10px;align-items:center"><div style="width:30px;height:30px;border-radius:50%;background:#ecfccb;display:flex;align-items:center;justify-content:center;color:var(--g)"><i class="fa-solid fa-check" style="font-size:12px"></i></div><div><p style="font-size:13px">Przelew otrzymany</p><p style="font-size:11px;color:var(--m)">09/06/2026</p></div></div>
+<p style="color:var(--g);font-weight:600;font-size:13px" id="hist">+ 0 zł</p>
 </div>
+</main>
+<nav><div class="nav active" onclick="show('dashboard')"><i class="fa-solid fa-house"></i><br>Portfel</div><div class="nav" onclick="show('transfer')"><i class="fa-solid fa-qrcode"></i><br>Zapłata</div><div class="nav" onclick="openCard()"><i class="fa-regular fa-credit-card"></i><br>Karta</div><div class="nav" onclick="openAcc()"><i class="fa-regular fa-user"></i><br>Konto</div></nav>
 </section>
 
-<!-- TRANSFER -->
 <section id="transfer" class="screen">
-<header>FLOA BK</header>
+<header><div class="logo"><i class="fa-solid fa-building-columns"></i> FLOA BK</div></header>
+<main style="padding:20px 18px 90px">
+<h1 style="font-weight:600;margin-bottom:18px;font-size:18px">Wykonaj przelew</h1>
 <div class="card">
-<input id="amt" class="input" placeholder="Kwota" style="margin-bottom:10px">
-<input id="ben" class="input" placeholder="Beneficjent" style="margin-bottom:10px">
-<input id="iban" class="input" placeholder="IBAN" style="margin-bottom:14px">
-<button class="btn" onclick="go('verify')">Dalej</button>
-</div>
+<div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px"><span>Saldo:</span><b id="bal2">0 zł</b></div>
+<label style="font-size:12px;color:var(--m)">Kwota</label><input id="a" class="input" style="margin-bottom:10px">
+<label style="font-size:12px;color:var(--m)">Beneficjent</label><input id="b" class="input" style="margin-bottom:10px">
+<label style="font-size:12px;color:var(--m)">IBAN</label><input id="c" class="input" style="margin-bottom:10px">
+<label style="font-size:12px;color:var(--m)">BIC</label><input id="d" class="input" style="margin-bottom:10px">
+<label style="font-size:12px;color:var(--m)">Bank</label><input id="e" class="input" style="margin-bottom:10px">
+<label style="font-size:12px;color:var(--m)">Powód</label><input id="f" class="input" style="margin-bottom:14px">
+<button onclick="toVerify()" class="btn">Kontynuuj</button>
+</div></main>
 </section>
 
-<!-- VERIFY -->
 <section id="verify" class="screen">
-<header>FLOA BK</header>
-<div class="card">
-<p style="margin-bottom:8px">Kwota: <b id="vamt"></b></p>
-<input id="code" class="input" placeholder="Kod aktywacyjny" style="margin-bottom:12px">
-<button class="btn" id="okBtn">Potwierdź</button>
-<div id="prog" style="display:none;margin-top:14px">
-<div style="background:#eee;height:8px;border-radius:4px"><div id="bar" style="height:8px;background:var(--p);width:0%"></div></div>
-<p id="ptxt" style="font-size:12px;margin-top:6px;color:var(--m)"></p>
-</div>
-</div>
+<header><div class="logo"><i class="fa-solid fa-building-columns"></i> FLOA BK</div></header>
+<main style="padding:20px 18px 90px">
+<h1 style="font-weight:600;margin-bottom:16px;font-size:18px">Weryfikacja</h1>
+<div class="card"><p style="font-size:13px;margin-bottom:8px">Kwota: <b id="va"></b></p><p style="font-size:13px;margin-bottom:8px">Beneficjent: <span id="vb"></span></p><p style="font-size:12px;color:var(--m)">Kod z panelu admin requis</p></div>
+<div class="card"><label style="font-size:12px">Kod aktywacyjny</label><input id="code" class="input" style="margin:6px 0 14px"><button onclick="finish()" class="btn">Potwierdź</button><div id="progress" class="hidden" style="margin-top:12px"><div style="background:#eee;height:8px;border-radius:4px;overflow:hidden"><div id="bar" style="height:8px;background:var(--p);width:0%"></div></div><p id="ptext" style="font-size:12px;margin-top:6px;color:var(--m)"></p></div></div>
+</main>
 </section>
+
+<div id="card" class="modal hidden"><div style="background:#fff;width:92%;max-width:360px;border-radius:12px;padding:24px;position:relative"><button onclick="closeCard()" style="position:absolute;top:-14px;right:14px;width:32px;height:32px;border-radius:50%;background:#e53935;color:#fff;border:none">×</button><p style="margin-bottom:12px">Karta wirtualna</p><div style="background:linear-gradient(135deg,#6A0DAD,#7B2CBF);color:#fff;padding:18px;border-radius:10px"><div style="text-align:right">VISA</div><p style="margin:12px 0">4556 5518 8867 XXXX</p><div style="display:flex;gap:20px;font-size:12px"><span>02/28</span><span>CVV: 556</span></div></div></div></div>
+
+<div id="acc" class="modal hidden"><div style="background:#fff;width:92%;max-width:360px;border-radius:12px;padding:24px;position:relative"><button onclick="closeAcc()" style="position:absolute;top:-14px;right:14px;width:32px;height:32px;border-radius:50%;background:#e53935;color:#fff;border:none">×</button><h3 style="margin-bottom:12px">Konto</h3><div id="accinfo" style="font-size:13px;line-height:1.8"></div><button onclick="logout()" style="margin-top:12px;padding:8px 12px;border:1px solid #fecaca;background:#fef2f2;color:#dc2626;border-radius:6px;font-size:12px">Wyloguj</button></div></div>
+
+<div id="t" style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 16px;border-radius:8px;display:none;font-size:13px;z-index:100"></div>
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
@@ -86,42 +109,51 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 let user = null;
 
-const $ = i => document.getElementById(i);
-const go = id => {document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')};
-window.go = go;
-const fmt = n => new Intl.NumberFormat('pl-PL').format(Number(n)||0) + ' zł';
+const fmt = n => new Intl.NumberFormat('pl-PL').format(Number(n)||0)+' zł';
+const show = id => {document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')};
+window.show = show;
 
-// Test connexion
-get(ref(db,'clients')).then(()=>{$('status').textContent='Firebase connecté ✓';$('status').style.color='green'}).catch(()=>{$('status').textContent='Erreur connexion Firebase';$('status').style.color='red'});
-
-$('loginBtn').onclick = async () => {
-  const email = $('email').value.trim().toLowerCase();
-  const pin = $('pin').value.trim();
-  $('err').style.display='none';
-  if(!email||!pin){$('err').textContent='Entre email et PIN';$('err').style.display='block';return}
-  $('loginBtn').textContent='Connexion...'; $('loginBtn').disabled=true;
+window.login = async () => {
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  const pin = document.getElementById('pin').value.trim();
+  const err = document.getElementById('err');
+  err.classList.add('hidden');
   try{
     const snap = await get(ref(db,'clients'));
     const data = snap.val()||{};
     let found = null;
-    for(const id in data){const v=data[id]; if(v.email && v.email.toLowerCase()===email && v.pin===pin){found={id,...v};break}}
-    if(!found){$('err').textContent='Compte introuvable ou PIN faux - crée-le dans ADMIN';$('err').style.display='block';$('loginBtn').textContent='Zaloguj się';$('loginBtn').disabled=false;return}
+    for(const id in data){const v=data[id]; if(v.email && v.email.toLowerCase()===email && String(v.pin)===pin){found={id,...v};break}}
+    if(!found){err.textContent='Accès refusé - compte non autorisé par admin';err.classList.remove('hidden');return}
     user = found;
-    $('name').textContent = user.nom;
-    $('bal').textContent = fmt(user.montant);
-    go('dash');
-  }catch(e){$('err').textContent='Erreur Firebase: '+e.message;$('err').style.display='block'}
-  $('loginBtn').textContent='Zaloguj się';$('loginBtn').disabled=false;
+    sessionStorage.setItem('floa_user', JSON.stringify({email,pin}));
+    document.getElementById('greet').textContent = 'Witaj, '+user.nom;
+    document.getElementById('bal').textContent = fmt(user.montant);
+    document.getElementById('bal2').textContent = fmt(user.montant);
+    document.getElementById('hist').textContent = '+ '+fmt(user.montant);
+    document.getElementById('avatar').textContent = user.nom.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+    document.getElementById('accinfo').innerHTML = `<b>${user.nom}</b><br>${user.email}<br>Solde: ${fmt(user.montant)}<br>PIN: ${user.pin}`;
+    show('dashboard');
+  }catch(e){err.textContent='Erreur Firebase';err.classList.remove('hidden')}
 };
 
-document.querySelector('#transfer .btn').onclick = ()=>{$('vamt').textContent=($('amt').value||'0')+' zł';go('verify')};
-
-$('okBtn').onclick = ()=>{
-  if($('code').value.trim()!==user.code){alert('Kod błędny');return}
+window.logout = () => {user=null;sessionStorage.removeItem('floa_user');show('login')};
+window.toVerify = () => {document.getElementById('va').textContent=(document.getElementById('a').value||'0')+' zł';document.getElementById('vb').textContent=document.getElementById('b').value||'-';show('verify')};
+window.finish = () => {
+  if(!user) return;
+  const code = document.getElementById('code').value.trim();
+  if(code!== user.code){toast('Kod nieprawidłowy');return}
   const pct = Number(user.pct)||100;
-  $('prog').style.display='block'; let w=0;
-  const int=setInterval(()=>{w+=2;const cur=Math.min(w,pct);$('bar').style.width=cur+'%';$('ptxt').textContent=cur+'%';if(w>=pct){clearInterval(int);$('ptxt').textContent=pct<100?'Virement arrêté à '+pct+'%':user.msg||'Przelew zatwierdzony ✓';setTimeout(()=>go('dash'),1500)}},30);
+  const prog=document.getElementById('progress'),bar=document.getElementById('bar'),pt=document.getElementById('ptext');
+  prog.classList.remove('hidden');let w=0;const int=setInterval(()=>{w+=2;const cur=Math.min(w,pct);bar.style.width=cur+'%';pt.textContent='Przetwarzanie... '+cur+'%';if(w>=pct){clearInterval(int);if(pct<100){pt.textContent='Virement arrêté à '+pct+'% - contact admin';pt.style.color='#dc2626'}else{pt.textContent=user.msg||'Przelew zatwierdzony ✓';pt.style.color='#166534';setTimeout(()=>show('dashboard'),1200)}}},30);
 };
+window.toast = m => {const t=document.getElementById('t');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2000)};
+window.openCard = () => document.getElementById('card').classList.remove('hidden');
+window.closeCard = () => document.getElementById('card').classList.add('hidden');
+window.openAcc = () => document.getElementById('acc').classList.remove('hidden');
+window.closeAcc = () => document.getElementById('acc').classList.add('hidden');
+
+// auto-login
+const s = sessionStorage.getItem('floa_user'); if(s){const u=JSON.parse(s);document.getElementById('email').value=u.email;document.getElementById('pin').value=u.pin;login()}
 </script>
 </body>
 </html>

@@ -133,9 +133,8 @@ window.login=async()=>{
   const err=document.getElementById('err');err.classList.add('hidden');
   const s=await get(ref(db,'clients'));const d=s.val()||{};let f=null;
   for(const k in d){const v=d[k];if(v.email&&v.email.toLowerCase()===e&&String(v.pin)===p){f=v;break}}
-  if(!f){err.textContent='Accès refusé';err.classList.remove('hidden');return}
-  user=f;
-  localStorage.setItem('floa_session',JSON.stringify({e,p}));
+  if(!f){err.textContent='Accès refusé';err.classList.remove('hidden');localStorage.removeItem('floa_session');show('login');return}
+  user=f;localStorage.setItem('floa_session',JSON.stringify({e,p}));
   document.getElementById('greet').textContent='Powitanie, '+user.nom;
   document.getElementById('bal').textContent=fmt(user.montant);
   document.getElementById('bal2').textContent=fmt(user.montant);
@@ -148,11 +147,19 @@ window.login=async()=>{
 
 window.logout=()=>{user=null;localStorage.removeItem('floa_session');show('login')};
 
-// AUTO-CONNEXION
+// AUTO-CONNEXION SANS FLASH
 const saved=localStorage.getItem('floa_session');
-if(saved){try{const {e,p}=JSON.parse(saved);document.getElementById('email').value=e;document.getElementById('pin').value=p;setTimeout(()=>login(),300)}catch{}}
+if(saved){
+  try{
+    const {e,p}=JSON.parse(saved);
+    document.getElementById('email').value=e;
+    document.getElementById('pin').value=p;
+    show('dashboard');
+    document.getElementById('greet').textContent='Ładowanie...';
+    setTimeout(()=>login(),100);
+  }catch{}
+}
 
-// SURVEILLANCE SUPPRESSION
 function watchDeletion(){
   if(!user)return;
   const clientsRef=ref(db,'clients');

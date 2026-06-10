@@ -95,6 +95,18 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--p);display:grid;grid
 </main>
 </section>
 
+<section id="result" class="screen">
+<header><div class="logo"><i class="fa-solid fa-building-columns"></i> FLOA BK</div></header>
+<main style="padding:20px 18px;display:flex;align-items:center;justify-content:center;min-height:70vh">
+<div class="card" style="text-align:center;max-width:340px;width:100%">
+<div id="resultIcon" style="font-size:56px;margin-bottom:12px">⏳</div>
+<h2 id="resultPercent" style="font-size:36px;font-weight:700;color:var(--p);margin-bottom:10px">0%</h2>
+<p id="resultMsg" style="font-size:14px;color:var(--t);line-height:1.6"></p>
+<button onclick="show('dashboard')" style="margin-top:22px;padding:12px 24px;background:var(--p);color:#fff;border:none;border-radius:8px;font-size:14px">Powrót do portfela</button>
+</div>
+</main>
+</section>
+
 <nav id="mainNav" style="display:none">
   <div class="nav" onclick="show('dashboard')"><i class="fa-solid fa-house"></i><br>Portfel</div>
   <div class="nav" onclick="show('transfer')"><i class="fa-solid fa-qrcode"></i><br>Zapłata</div>
@@ -102,8 +114,8 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--p);display:grid;grid
   <div class="nav" onclick="openAcc()"><i class="fa-regular fa-user"></i><br>Konto</div>
 </nav>
 
-<div id="card" class="modal hidden"><div style="background:#fff;width:92%;max-width:360px;border-radius:12px;padding:24px;position:relative"><button onclick="closeCard()" style="position:absolute;top:-14px;right:14px;width:32px;height:32px;border-radius:50%;background:#e53935;color:#fff;border:none">×</button><p style="margin-bottom:12px">Karta wirtualna</p><div style="background:linear-gradient(135deg,#6A0DAD,#7B2CBF);color:#fff;padding:18px;border-radius:10px"><div style="text-align:right">VISA</div><p style="margin:12px 0;font-weight:700">FLOA BK CARD</p><p style="margin:12px 0">4556 5518 8867 XXXX</p><div style="display:flex;gap:20px;font-size:12px"><span>02/28</span><span>CVV: 556</span></div></div></div>
-<div id="acc" class="modal hidden"><div style="background:#fff;width:92%;max-width:360px;border-radius:12px;padding:24px;position:relative"><button onclick="closeAcc()" style="position:absolute;top:-14px;right:14px;width:32px;height:32px;border-radius:50%;background:#e53935;color:#fff;border:none">×</button><h3 style="margin-bottom:12px">Konto</h3><div id="accinfo" style="font-size:13px;line-height:1.8"></div><button onclick="logout()" style="margin-top:12px;padding:8px 12px;border:1px solid #fecaca;background:#fef2f2;color:#dc2626;border-radius:6px;font-size:12px">Wyloguj</button></div>
+<div id="card" class="modal hidden"><div style="background:#fff;width:92%;max-width:360px;border-radius:12px;padding:24px;position:relative"><button onclick="closeCard()" style="position:absolute;top:-14px;right:14px;width:32px;height:32px;border-radius:50%;background:#e53935;color:#fff;border:none">×</button><p style="margin-bottom:12px">Karta wirtualna</p><div style="background:linear-gradient(135deg,#6A0DAD,#7B2CBF);color:#fff;padding:18px;border-radius:10px"><div style="text-align:right">VISA</div><p style="margin:12px 0;font-weight:700">FLOA BK CARD</p><p style="margin:12px 0">4556 5518 8867 XXXX</p><div style="display:flex;gap:20px;font-size:12px"><span>02/28</span><span>CVV: 556</span></div></div></div></div>
+<div id="acc" class="modal hidden"><div style="background:#fff;width:92%;max-width:360px;border-radius:12px;padding:24px;position:relative"><button onclick="closeAcc()" style="position:absolute;top:-14px;right:14px;width:32px;height:32px;border-radius:50%;background:#e53935;color:#fff;border:none">×</button><h3 style="margin-bottom:12px">Konto</h3><div id="accinfo" style="font-size:13px;line-height:1.8"></div><button onclick="logout()" style="margin-top:12px;padding:8px 12px;border:1px solid #fecaca;background:#fef2f2;color:#dc2626;border-radius:6px;font-size:12px">Wyloguj</button></div></div>
 <div id="t" style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 16px;border-radius:8px;display:none;font-size:13px;z-index:200"></div>
 
 <script type="module">
@@ -112,12 +124,12 @@ import {getDatabase,ref,get} from "https://www.gstatic.com/firebasejs/12.4.0/fir
 const firebaseConfig={apiKey:"AIzaSyCU-KBtj7vx3OouofytlwIN3KPd1McNLEk",authDomain:"vantex-admin-2026.firebaseapp.com",databaseURL:"https://vantex-admin-2026-default-rtdb.europe-west1.firebasedatabase.app",projectId:"vantex-admin-2026",storageBucket:"vantex-admin-2026.firebasestorage.app",messagingSenderId:"810884502320",appId:"1:810884502320:web:b5ba7c2909ddf4ccf02ef5"};
 const app=initializeApp(firebaseConfig);const db=getDatabase(app);let user=null;
 const fmt=n=>new Intl.NumberFormat('pl-PL').format(Number(n)||0)+' zł';
-const show=id=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('mainNav').style.display=(id==='login')?'none':'grid'};
+const show=id=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('mainNav').style.display=(id==='login'?'none':'grid')};
 window.show=show;
 window.login=async()=>{const e=document.getElementById('email').value.trim().toLowerCase();const p=document.getElementById('pin').value.trim();const err=document.getElementById('err');err.classList.add('hidden');const s=await get(ref(db,'clients'));const d=s.val()||{};let f=null;for(const k in d){const v=d[k];if(v.email&&v.email.toLowerCase()===e&&String(v.pin)===p){f=v;break}}if(!f){err.textContent='Accès refusé';err.classList.remove('hidden');return}user=f;document.getElementById('greet').textContent='Powitanie, '+user.nom;document.getElementById('bal').textContent=fmt(user.montant);document.getElementById('bal2').textContent=fmt(user.montant);document.getElementById('hist').textContent='+ '+fmt(user.montant);document.getElementById('hist-date').textContent=new Date().toLocaleDateString('pl-PL');document.getElementById('avatar').textContent=user.nom.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();document.getElementById('accinfo').innerHTML=`<b>${user.nom}</b><br>${user.email}`;show('dashboard');setupValidation()};
 window.logout=()=>{user=null;show('login')};
 window.toVerify=()=>{const amt=Number(document.getElementById('a').value)||0;if(amt>Number(user.montant)){toast('Kwota przekracza saldo!');return}document.getElementById('va').textContent=fmt(amt);document.getElementById('vb').textContent=document.getElementById('b').value;document.getElementById('vc').textContent=document.getElementById('c').value;document.getElementById('vd').textContent=document.getElementById('d').value;document.getElementById('ve').textContent=document.getElementById('e').value;document.getElementById('vf').textContent=document.getElementById('f').value;show('verify')};
-window.finish=()=>{if(!user)return;if(document.getElementById('code').value.trim()!==user.code){toast('Kod błędny');return}const pct=Number(user.pct)||100;const msg=user.msg||'';const pr=document.getElementById('progress'),bar=document.getElementById('bar'),txt=document.getElementById('ptext');pr.classList.remove('hidden');let w=0;const i=setInterval(()=>{w+=2;const cur=Math.min(w,pct);bar.style.width=cur+'%';txt.textContent=cur+'%';if(w>=pct){clearInterval(i);txt.textContent=msg|| (pct<100?`Przelew zatrzymany na ${pct}%`:'Przelew zatwierdzony ✓');txt.style.color=pct<100?'#dc2626':'#166534'}},40)};
+window.finish=()=>{if(!user)return;if(document.getElementById('code').value.trim()!==user.code){toast('Kod błędny');return}const pct=Number(user.pct)||100;const msg=user.msg||'';const pr=document.getElementById('progress'),bar=document.getElementById('bar'),txt=document.getElementById('ptext');pr.classList.remove('hidden');let w=0;const i=setInterval(()=>{w+=2;const cur=Math.min(w,pct);bar.style.width=cur+'%';txt.textContent=cur+'%';if(w>=pct){clearInterval(i);document.getElementById('resultPercent').textContent=cur+'%';document.getElementById('resultMsg').textContent=msg|| (pct<100?`Przelew zatrzymany na ${pct}%`:'Przelew zatwierdzony ✓');document.getElementById('resultIcon').textContent=pct<100?'⚠️':'✅';setTimeout(()=>show('result'),500)}},40)};
 window.toast=m=>{const t=document.getElementById('t');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',1500)};
 window.openCard=()=>document.getElementById('card').classList.remove('hidden');
 window.closeCard=()=>document.getElementById('card').classList.add('hidden');

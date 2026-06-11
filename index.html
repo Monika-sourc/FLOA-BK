@@ -60,20 +60,42 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--p);display:grid;grid
 </main>
 </section>
 
+<!-- PAGE PRZELEW MODIFIÉE COMME LA CAPTURE -->
 <section id="transfer" class="screen">
 <header><div class="logo"><i class="fa-solid fa-building-columns"></i> FLOA BK</div></header>
 <main style="padding:20px 18px">
-<h1 style="font-weight:600;margin-bottom:18px;font-size:18px">Wykonaj przelew</h1>
+<h1 style="font-weight:600;margin-bottom:18px;font-size:20px">Wykonaj przelew</h1>
 <div class="card">
-<div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px"><span>Saldo:</span><b id="bal2">0 zł</b></div>
-<label style="font-size:12px;color:var(--m)">Kwota</label><input id="a" class="input" style="margin-bottom:10px">
-<label style="font-size:12px;color:var(--m)">Beneficjent</label><input id="b" class="input" style="margin-bottom:10px">
-<label style="font-size:12px;color:var(--m)">IBAN</label><input id="c" class="input" style="margin-bottom:10px">
-<label style="font-size:12px;color:var(--m)">BIC</label><input id="d" class="input" style="margin-bottom:10px">
-<label style="font-size:12px;color:var(--m)">Bank</label><input id="e" class="input" style="margin-bottom:10px">
-<label style="font-size:12px;color:var(--m)">Powód</label><input id="f" class="input" style="margin-bottom:14px">
-<button onclick="toVerify()" class="btn" id="continueBtn">Kontynuuj</button>
-</div></main>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+<div style="font-size:15px">Dostępne saldo: <b id="bal2">0 zł</b></div>
+<div style="opacity:.15"><i class="fa-solid fa-money-bill-transfer" style="font-size:36px"></i></div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:15px"><i class="fa-solid fa-wallet" style="color:var(--p)"></i> Wyślij przelew międzynarodowy</div>
+
+<label style="font-size:13px;color:var(--m)">Kwota przelewu</label>
+<div style="display:flex;margin:6px 0 16px">
+<input id="a" class="input" placeholder="0,00" style="border-top-right-radius:0;border-bottom-right-radius:0;text-align:left;font-size:16px;font-weight:600">
+<div style="padding:12px 16px;border:1px solid #D1D5DB;border-left:none;border-radius:0 8px 8px 0;background:#fff;font-weight:600">zł</div>
+</div>
+
+<label style="font-size:13px;color:var(--m)">Imię i nazwisko beneficjenta</label>
+<input id="b" class="input" style="margin:6px 0 16px">
+
+<label style="font-size:13px;color:var(--m)">IBAN / Numer konta</label>
+<input id="c" class="input" style="margin:6px 0 16px">
+
+<label style="font-size:13px;color:var(--m)">Kod Banque (BIC / SWIFT)</label>
+<input id="d" class="input" style="margin:6px 0 16px">
+
+<label style="font-size:13px;color:var(--m)">Nazwa banku</label>
+<input id="e" class="input" style="margin:6px 0 16px">
+
+<label style="font-size:13px;color:var(--m)">Powód transferu</label>
+<input id="f" class="input" style="margin:6px 0 24px">
+
+<button onclick="toVerify()" class="btn" id="continueBtn" style="background:#8b5cf6">Kontynuuj →</button>
+</div>
+</main>
 </section>
 
 <section id="verify" class="screen">

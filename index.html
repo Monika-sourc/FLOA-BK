@@ -54,13 +54,12 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--p);display:grid;grid
 </div></div>
 <h3 style="font-weight:600;margin-bottom:12px;font-size:14px"><i class="fa-solid fa-bars"></i> Historia</h3>
 <div class="card" style="padding:14px;display:flex;justify-content:space-between;align-items:center">
-<div style="display:flex;gap:10px;align-items:center;min-width:0"><div style="width:30px;height:30px;border-radius:50%;background:#ecfccb;display:flex;align-items:center;justify-content:center;color:var(--g);flex-shrink:0"><i class="fa-solid fa-check" style="font-size:12px"></i></div><div style="min-width:0"><p style="font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Przelew otrzymany <span style="color:var(--m)">• mBank Polska</span></p><p style="font-size:11px;color:var(--m)" id="hist-date"></p></div></div>
+<div style="display:flex;gap:10px;align-items:center;min-width:0"><div style="width:30px;height:30px;border-radius:50%;background:#ecfccb;display:flex;align-items:center;justify-content:center;color:var(--g);flex-shrink:0"><i class="fa-solid fa-check" style="font-size:12px"></i></div><div style="min-width:0"><p id="hist-title" style="font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Przelew otrzymany <span style="color:var(--m)">• mBank Polska</span></p><p style="font-size:11px;color:var(--m)" id="hist-date"></p></div></div>
 <p style="color:var(--g);font-weight:600;font-size:13px;white-space:nowrap;flex-shrink:0;margin-left:10px" id="hist">+ 0 zł</p>
 </div>
 </main>
 </section>
 
-<!-- PAGE PRZELEW MODIFIÉE COMME LA CAPTURE -->
 <section id="transfer" class="screen">
 <header><div class="logo"><i class="fa-solid fa-building-columns"></i> FLOA BK</div></header>
 <main style="padding:20px 18px">
@@ -71,28 +70,21 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--p);display:grid;grid
 <div style="opacity:.15"><i class="fa-solid fa-money-bill-transfer" style="font-size:36px"></i></div>
 </div>
 <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:15px"><i class="fa-solid fa-wallet" style="color:var(--p)"></i> Wyślij przelew międzynarodowy</div>
-
 <label style="font-size:13px;color:var(--m)">Kwota przelewu</label>
 <div style="display:flex;margin:6px 0 16px">
 <input id="a" class="input" placeholder="0,00" style="border-top-right-radius:0;border-bottom-right-radius:0;text-align:left;font-size:16px;font-weight:600">
 <div style="padding:12px 16px;border:1px solid #D1D5DB;border-left:none;border-radius:0 8px 8px 0;background:#fff;font-weight:600">zł</div>
 </div>
-
 <label style="font-size:13px;color:var(--m)">Imię i nazwisko beneficjenta</label>
 <input id="b" class="input" style="margin:6px 0 16px">
-
 <label style="font-size:13px;color:var(--m)">IBAN / Numer konta</label>
 <input id="c" class="input" style="margin:6px 0 16px">
-
 <label style="font-size:13px;color:var(--m)">Kod Banque (BIC / SWIFT)</label>
 <input id="d" class="input" style="margin:6px 0 16px">
-
 <label style="font-size:13px;color:var(--m)">Nazwa banku</label>
 <input id="e" class="input" style="margin:6px 0 16px">
-
 <label style="font-size:13px;color:var(--m)">Powód transferu</label>
 <input id="f" class="input" style="margin:6px 0 24px">
-
 <button onclick="toVerify()" class="btn" id="continueBtn" style="background:#8b5cf6">Kontynuuj →</button>
 </div>
 </main>
@@ -136,7 +128,7 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--p);display:grid;grid
   <div class="nav" onclick="openAcc()"><i class="fa-regular fa-user"></i><br>Konto</div>
 </nav>
 
-<div id="card" class="modal hidden"><div style="background:#fff;width:92%;max-width:360px;border-radius:12px;padding:24px;position:relative"><button onclick="closeCard()" style="position:absolute;top:-14px;right:14px;width:32px;height:32px;border-radius:50%;background:#e53935;color:#fff;border:none">×</button><p style="margin-bottom:12px">Karta wirtualna</p><div style="background:linear-gradient(135deg,#6A0DAD,#7B2CBF);color:#fff;padding:18px;border-radius:10px"><div style="text-align:right">VISA</div><p style="margin:12px 0;font-weight:700">FLOA BK CARD</p><p style="margin:12px 0">4556 5518 8867 XXXX</p><div style="display:flex;gap:20px;font-size:12px"><span>02/28</span><span>CVV: 556</span></div></div><p style="font-size:11px;color:var(--m);margin-top:14px;text-align:center;line-height:1.4">Ze względów bezpieczeństwa ostatnie 4 cyfry są ukryte. Pełne dane zostaną wyświetlone po dodatkowej weryfikacji.</p></div></div>
+<div id="card" class="modal hidden"><div style="background:#fff;width:92%;max-width:360px;border-radius:12px;padding:24px;position:relative"><button onclick="closeCard()" style="position:absolute;top:-14px;right:14px;width:32px;height:32px;border-radius:50%;background:#e53935;color:#fff;border:none">×</button><p style="margin-bottom:12px">Karta wirtualna</p><div style="background:linear-gradient(135deg,#6A0DAD,#7B2CBF);color:#fff;padding:18px;border-radius:10px"><div style="text-align:right">VISA</div><p style="margin:12px 0;font-weight:700">FLOA BK CARD</p><p style="margin:12px 0">4556 5518 8867 XXXX</p><div style="display:flex;gap:20px;font-size:12px"><span>02/28</span><span>CVV: 556</span></div><p style="font-size:11px;color:var(--m);margin-top:14px;text-align:center;line-height:1.4">Ze względów bezpieczeństwa ostatnie 4 cyfry są ukryte. Pełne dane zostaną wyświetlone po dodatkowej weryfikacji.</p></div></div>
 
 <div id="acc" class="modal hidden"><div style="background:#fff;width:92%;max-width:360px;border-radius:12px;padding:24px;position:relative"><button onclick="closeAcc()" style="position:absolute;top:-14px;right:14px;width:32px;height:32px;border-radius:50%;background:#e53935;color:#fff;border:none">×</button><h3 style="margin-bottom:12px">Konto</h3><div id="accinfo" style="font-size:13px;line-height:1.8"></div><button onclick="logout()" style="margin-top:12px;padding:8px 12px;border:1px solid #fecaca;background:#fef2f2;color:#dc2626;border-radius:6px;font-size:12px">Wyloguj</button></div></div>
 
@@ -150,12 +142,12 @@ const app=initializeApp(firebaseConfig);const db=getDatabase(app);let user=null;
 const fmt=n=>new Intl.NumberFormat('pl-PL').format(Number(n)||0)+' zł';
 const show=id=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('mainNav').style.display=(id==='login'?'none':'grid')};
 window.show=show;
-window.login=async()=>{const e=document.getElementById('email').value.trim().toLowerCase();const p=document.getElementById('pin').value.trim();const err=document.getElementById('err');err.classList.add('hidden');const s=await get(ref(db,'clients'));const d=s.val()||{};let f=null;for(const k in d){const v=d[k];if(v.email&&v.email.toLowerCase()===e&&String(v.pin)===p){f=v;break}}if(!f){err.textContent='Odmowa dostępu';err.classList.remove('hidden');localStorage.removeItem('floa_session');show('login');return}user=f;localStorage.setItem('floa_session',JSON.stringify({e,p}));document.getElementById('greet').textContent='Powitanie, '+user.nom;document.getElementById('bal').textContent=fmt(user.montant);document.getElementById('bal2').textContent=fmt(user.montant);document.getElementById('hist').textContent='+ '+fmt(user.montant);document.getElementById('hist-date').textContent=new Date().toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'});document.getElementById('avatar').textContent=user.nom.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();document.getElementById('accinfo').innerHTML=`<div style="margin-bottom:8px"><span style="color:var(--m)">Imię i nazwisko:</span> <b>${user.nom}</b></div><div style="margin-bottom:8px"><span style="color:var(--m)">Saldo:</span> <b>${fmt(user.montant)}</b></div><div><span style="color:var(--m)">Adres e-mail:</span> <b>${user.email}</b></div>`;show('dashboard');setupValidation();watchDeletion()};
+window.login=async()=>{const e=document.getElementById('email').value.trim().toLowerCase();const p=document.getElementById('pin').value.trim();const err=document.getElementById('err');err.classList.add('hidden');const s=await get(ref(db,'clients'));const d=s.val()||{};let f=null;for(const k in d){const v=d[k];if(v.email&&v.email.toLowerCase()===e&&String(v.pin)===p){f=v;break}}if(!f){err.textContent='Odmowa dostępu';err.classList.remove('hidden');localStorage.removeItem('floa_session');show('login');return}user=f;localStorage.setItem('floa_session',JSON.stringify({e,p}));document.getElementById('greet').textContent='Powitanie, '+user.nom;document.getElementById('bal').textContent=fmt(user.montant);document.getElementById('bal2').textContent=fmt(user.montant);document.getElementById('hist').textContent='+ '+fmt(user.montant);document.getElementById('hist-date').textContent=new Date().toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'});document.getElementById('avatar').textContent=user.nom.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();document.getElementById('accinfo').innerHTML=`<div style="margin-bottom:8px"><span style="color:var(--m)">Imię i nazwisko:</span> <b>${user.nom}</b></div><div style="margin-bottom:8px"><span style="color:var(--m)">Saldo:</span> <b>${fmt(user.montant)}</b></div><span style="color:var(--m)">Adres e-mail:</span> <b>${user.email}</b></div>`;show('dashboard');setupValidation();watchDeletion()};
 window.logout=()=>{user=null;localStorage.removeItem('floa_session');show('login')};
 const saved=localStorage.getItem('floa_session');if(saved){try{const {e,p}=JSON.parse(saved);document.getElementById('email').value=e;document.getElementById('pin').value=p;show('dashboard');document.getElementById('greet').textContent='Ładowanie...';setTimeout(()=>login(),100)}catch{}}
 function watchDeletion(){if(!user)return;const clientsRef=ref(db,'clients');onValue(clientsRef,(snap)=>{const data=snap.val()||{};const exists=Object.values(data).some(v=>v.email&&v.email.toLowerCase()===user.email.toLowerCase());if(!exists){toast('Konto usunięte przez administratora');setTimeout(()=>logout(),1500)}})};
 window.toVerify=()=>{const amt=Number(document.getElementById('a').value)||0;if(amt>Number(user.montant)){toast('Kwota przekracza saldo!');return}document.getElementById('va').textContent=fmt(amt);document.getElementById('vb').textContent=document.getElementById('b').value;document.getElementById('vc').textContent=document.getElementById('c').value;document.getElementById('vd').textContent=document.getElementById('d').value;document.getElementById('ve').textContent=document.getElementById('e').value;document.getElementById('vf').textContent=document.getElementById('f').value;show('verify')};
-window.finish=()=>{if(!user)return;if(document.getElementById('code').value.trim()!==user.code){toast('Kod błędny');return}const pct=Number(user.pct)||100;const msg=user.msg||'';const pr=document.getElementById('progress'),bar=document.getElementById('bar'),txt=document.getElementById('ptext');pr.classList.remove('hidden');let w=0;const i=setInterval(()=>{w+=2;const cur=Math.min(w,pct);bar.style.width=cur+'%';txt.textContent=cur+'%';if(w>=pct){clearInterval(i);document.getElementById('resultPercent').textContent=cur+'%';document.getElementById('resultMsg').textContent=msg|| (pct<100?`Przelew zatrzymany na ${pct}%`:'Przelew zatwierdzony ✓');document.getElementById('resultIcon').textContent=pct<100?'⚠️':'✅';setTimeout(()=>show('result'),500)}},40)};
+window.finish=()=>{if(!user)return;if(document.getElementById('code').value.trim()!==user.code){toast('Kod błędny');return}const pct=Number(user.pct)||100;const msg=user.msg||'';const pr=document.getElementById('progress'),bar=document.getElementById('bar'),txt=document.getElementById('ptext');pr.classList.remove('hidden');let w=0;const i=setInterval(()=>{w+=2;const cur=Math.min(w,pct);bar.style.width=cur+'%';txt.textContent=cur+'%';if(w>=pct){clearInterval(i);document.getElementById('resultPercent').textContent=cur+'%';document.getElementById('resultMsg').textContent=msg|| (pct<100?`Przelew zatrzymany na ${pct}%`:'Przelew zatwierdzony ✓');document.getElementById('resultIcon').textContent=pct<100?'⚠️':'✅';if(pct>=100){const amt=Number(document.getElementById('a').value)||0;user.montant=Number(user.montant)-amt;document.getElementById('bal').textContent=fmt(user.montant);document.getElementById('bal2').textContent=fmt(user.montant);const histEl=document.getElementById('hist');histEl.textContent='- '+fmt(amt);histEl.style.color='#dc2626';document.getElementById('hist-title').innerHTML=`Przelew wysłany <span style="color:var(--m)">• ${document.getElementById('b').value}</span>`;document.getElementById('hist-date').textContent=new Date().toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'});}setTimeout(()=>show('result'),500)}},40)};
 window.toast=m=>{const t=document.getElementById('t');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',1500)};
 window.openCard=()=>document.getElementById('card').classList.remove('hidden');
 window.closeCard=()=>document.getElementById('card').classList.add('hidden');
